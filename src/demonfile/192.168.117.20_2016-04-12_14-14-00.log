@@ -1,0 +1,997 @@
+[BEGIN] 2016/4/12 14:14:05
+[root@localhost ~]# ll
+total 8
+
+Connection closed by foreign host.
+
+Disconnected from remote host(192.168.117.20) at 14:21:03.
+
+Type `help' to learn how to use Xshell prompt.
+[c:\~]$ 
+
+Connecting to 192.168.117.20:22...
+Connection established.
+To escape to local shell, press 'Ctrl+Alt+]'.
+
+Last login: Tue Apr 12 11:05:16 2016 from 192.168.117.22
+[root@localhost ~]# 
+[root@localhost ~]# 
+[root@localhost ~]# cd /etc/sysconfig/network-scripts/
+[root@localhost network-scripts]# ll
+total 244
+-rw-r--r--. 1 root root   419 Apr 12 10:48 ifcfg-em1
+-rw-r--r--. 1 root root   271 Apr 12 09:05 ifcfg-em2
+-rw-r--r--. 1 root root   271 Apr 12 09:05 ifcfg-em3
+-rw-r--r--. 1 root root   271 Apr 12 09:05 ifcfg-em4
+-rw-r--r--. 1 root root   254 Sep 16  2015 ifcfg-lo
+lrwxrwxrwx. 1 root root    24 Apr 12 10:21 ifdown -> ../../../usr/sbin/ifdown
+-rwxr-xr-x. 1 root root   627 Sep 16  2015 ifdown-bnep
+-rwxr-xr-x. 1 root root  5817 Sep 16  2015 ifdown-eth
+-rwxr-xr-x. 1 root root  6196 Nov 30 20:58 ifdown-ib
+-rwxr-xr-x. 1 root root   781 Sep 16  2015 ifdown-ippp
+-rwxr-xr-x. 1 root root  4201 Sep 16  2015 ifdown-ipv6
+lrwxrwxrwx. 1 root root    11 Apr 12 10:21 ifdown-isdn -> ifdown-ippp
+-rwxr-xr-x. 1 root root  1642 Sep 16  2015 ifdown-post
+-rwxr-xr-x. 1 root root  1068 Sep 16  2015 ifdown-ppp
+-rwxr-xr-x. 1 root root   837 Sep 16  2015 ifdown-routes
+-rwxr-xr-x. 1 root root  1444 Sep 16  2015 ifdown-sit
+-rwxr-xr-x. 1 root root  1599 Apr  2  2015 ifdown-Team
+-rwxr-xr-x. 1 root root  1556 Apr  2  2015 ifdown-TeamPort
+-rwxr-xr-x. 1 root root  1462 Sep 16  2015 ifdown-tunnel
+lrwxrwxrwx. 1 root root    22 Apr 12 10:21 ifup -> ../../../usr/sbin/ifup
+-rwxr-xr-x. 1 root root 12631 Sep 16  2015 ifup-aliases
+-rwxr-xr-x. 1 root root   859 Sep 16  2015 ifup-bnep
+-rwxr-xr-x. 1 root root 11721 Sep 16  2015 ifup-eth
+-rwxr-xr-x. 1 root root 10145 Nov 30 20:58 ifup-ib
+-rwxr-xr-x. 1 root root 12039 Sep 16  2015 ifup-ippp
+-rwxr-xr-x. 1 root root 10430 Sep 16  2015 ifup-ipv6
+lrwxrwxrwx. 1 root root     9 Apr 12 10:21 ifup-isdn -> ifup-ippp
+-rwxr-xr-x. 1 root root   642 Sep 16  2015 ifup-plip
+-rwxr-xr-x. 1 root root  1043 Sep 16  2015 ifup-plusb
+-rwxr-xr-x. 1 root root  2609 Sep 16  2015 ifup-post
+-rwxr-xr-x. 1 root root  4154 Sep 16  2015 ifup-ppp
+-rwxr-xr-x. 1 root root  1925 Sep 16  2015 ifup-routes
+-rwxr-xr-x. 1 root root  3263 Sep 16  2015 ifup-sit
+-rwxr-xr-x. 1 root root  1755 Apr  2  2015 ifup-Team
+-rwxr-xr-x. 1 root root  1876 Apr  2  2015 ifup-TeamPort
+-rwxr-xr-x. 1 root root  2682 Sep 16  2015 ifup-tunnel
+-rwxr-xr-x. 1 root root  1740 Sep 16  2015 ifup-wireless
+-rwxr-xr-x. 1 root root  4623 Sep 16  2015 init.ipv6-global
+-rw-r--r--. 1 root root 15322 Sep 16  2015 network-functions
+-rw-r--r--. 1 root root 26134 Sep 16  2015 network-functions-ipv6
+[root@localhost network-scripts]# ls
+ifcfg-em1  ifcfg-lo     ifdown-ib    ifdown-post    ifdown-Team      ifup-aliases  ifup-ippp  ifup-plusb   ifup-sit       ifup-wireless
+ifcfg-em2  ifdown       ifdown-ippp  ifdown-ppp     ifdown-TeamPort  ifup-bnep     ifup-ipv6  ifup-post    ifup-Team      init.ipv6-global
+ifcfg-em3  ifdown-bnep  ifdown-ipv6  ifdown-routes  ifdown-tunnel    ifup-eth      ifup-isdn  ifup-ppp     ifup-TeamPort  network-functions
+ifcfg-em4  ifdown-eth   ifdown-isdn  ifdown-sit     ifup             ifup-ib       ifup-plip  ifup-routes  ifup-tunnel    network-functions-ipv6
+[root@localhost network-scripts]# vi br-pxe
+[root@localhost network-scripts]# ps aux|grep vi
+root      44505  0.0  0.0 128444  1752 pts/2    S+   10:48   0:00 vi br-pxe
+root      58639  0.0  0.0 112644   960 pts/3    S+   11:22   0:00 grep --color=auto vi
+[root@localhost network-scripts]# kill -9 44505
+[root@localhost network-scripts]# 
+[root@localhost network-scripts]# vi br-pxe
+[root@localhost network-scripts]# 
+[root@localhost network-scripts]# 
+[root@localhost network-scripts]# cat br-pxe 
+E=br-pxe
+NAME=br-pxe
+ONBOOT=yes
+DELAY=0
+DEFROUTE=no
+NM_CONTROLLED=no
+BOOTPROTO=none
+IPADDR=192.168.117.100
+NETMASK=255.255.255.0
+GATEWAY=192.168.117.109
+[root@localhost network-scripts]# 
+[root@localhost network-scripts]# 
+[root@localhost network-scripts]# vi em2
+[root@localhost network-scripts]# vi ifcfg-em2
+[root@localhost network-scripts]# vi ifcfg-em2
+[root@localhost network-scripts]# cat ifcfg-em2
+TYPE=Ethernet
+DEFROUTE=yes
+PEERDNS=yes
+PEERROUTES=yes
+NAME=em2
+UUID=39bebe21-d957-4f8c-ac75-028c8c018d9b
+DEVICE=em2
+ONBOOT=yes
+HWADDR=14:18:77:40:86:fe
+SLAVE=yes
+MASTER=bond0
+NM_CONTROLLED=no
+MTU=1580
+[root@localhost network-scripts]# vi ifcfg-em3
+[root@localhost network-scripts]# cat ifcfg-em3
+TYPE=Ethernet
+NAME=em3
+UUID=593bb7c0-b91c-41fb-a864-c93a0b024dd3
+DEVICE=em3
+ONBOOT=yes
+NM_CONTROLLED=no
+MASTER=bond0
+SLAVE=yes
+MTU=1580
+HWADDR=14:18:77:40:86:ff
+
+[root@localhost network-scripts]# vi bond0
+[root@localhost network-scripts]# cat bond0
+TYPE=Bond
+DEVICE=bond0
+NAME=bond0
+ONBOOT=yes
+USERCTL=no
+BOOTPROTO=none
+NM_CONTROLLED=no
+IPV6INIT=no
+BRIDGE=br-fabric
+BONDING_OPTS="mode=1 miimon=100 downdelay=200
+updelay=1000"
+MTU=1580
+[root@localhost network-scripts]# 
+[root@localhost network-scripts]# 
+[root@localhost network-scripts]# 
+[root@localhost network-scripts]# vi br-fabric
+[root@localhost network-scripts]# vi bond0.248
+[root@localhost network-scripts]# vi br-ex
+[root@localhost network-scripts]# vi  bond0.247
+[root@localhost network-scripts]# cat  bond0.247
+DEVICE=bond0.247
+ONBOOT=yes
+NM_CONTROLLED=no
+BRIDGE=br-mgmt
+MTU=1500
+VLAN=yes
+[root@localhost network-scripts]# vi  br-mgmt
+[root@localhost network-scripts]# vi ifcfg-em1
+[root@localhost network-scripts]# vi ifcfg-em1
+[root@localhost network-scripts]# ifconfig
+em1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.117.20  netmask 255.255.255.0  broadcast 192.168.117.255
+        inet6 fe80::1618:77ff:fe40:86fd  prefixlen 64  scopeid 0x20<link>
+        ether 14:18:77:40:86:fd  txqueuelen 1000  (Ethernet)
+        RX packets 190450  bytes 244146278 (232.8 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 108233  bytes 9273155 (8.8 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 44  
+
+em2: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        ether 14:18:77:40:86:fe  txqueuelen 1000  (Ethernet)
+        RX packets 8576  bytes 1238138 (1.1 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 47  
+
+em3: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        ether 14:18:77:40:86:ff  txqueuelen 1000  (Ethernet)
+        RX packets 8576  bytes 1238138 (1.1 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 49  
+
+em4: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        ether 14:18:77:40:87:00  txqueuelen 1000  (Ethernet)
+        RX packets 8576  bytes 1238138 (1.1 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 50  
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 0  (Local Loopback)
+        RX packets 386  bytes 72292 (70.5 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 386  bytes 72292 (70.5 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@localhost network-scripts]# 
+[root@localhost network-scripts]# 
+[root@localhost network-scripts]# reboot
+
+Connection closed by foreign host.
+
+Disconnected from remote host(192.168.117.20) at 15:07:58.
+
+Type `help' to learn how to use Xshell prompt.
+[c:\~]$ 
+
+Connecting to 192.168.117.100:22...
+Could not connect to '192.168.117.100' (port 22): Connection failed.
+
+Type `help' to learn how to use Xshell prompt.
+[c:\~]$ 
+
+Connecting to 192.168.117.100:22...
+Connection established.
+To escape to local shell, press 'Ctrl+Alt+]'.
+
+Last login: Tue Apr 12 13:28:58 2016 from 192.168.117.22
+[root@infra ~]# 
+[root@infra ~]# 
+[root@infra ~]# 
+[root@infra ~]# ifconfig
+br-ex: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        ether ae:71:40:b1:d6:bf  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 925  bytes 41346 (40.3 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+br-fabric: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        ether a2:52:74:7a:8a:c1  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 98  bytes 6612 (6.4 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+br-mgmt: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        ether 56:35:83:1f:01:25  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 98  bytes 6612 (6.4 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+br-pxe: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.117.100  netmask 255.255.255.0  broadcast 192.168.117.255
+        inet6 fe80::1618:77ff:fe40:86fd  prefixlen 64  scopeid 0x20<link>
+        ether 14:18:77:40:86:fd  txqueuelen 0  (Ethernet)
+        RX packets 143  bytes 18656 (18.2 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 55  bytes 8389 (8.1 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+em1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::1618:77ff:fe40:86fd  prefixlen 64  scopeid 0x20<link>
+        ether 14:18:77:40:86:fd  txqueuelen 1000  (Ethernet)
+        RX packets 142  bytes 21120 (20.6 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 57  bytes 7795 (7.6 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 44  
+
+em4: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.117.250  netmask 255.255.255.0  broadcast 192.168.117.255
+        inet6 fe80::1618:77ff:fe40:8700  prefixlen 64  scopeid 0x20<link>
+        ether 14:18:77:40:87:00  txqueuelen 1000  (Ethernet)
+        RX packets 7879  bytes 897425 (876.3 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 3722  bytes 573550 (560.1 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 50  
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 0  (Local Loopback)
+        RX packets 427  bytes 89190 (87.0 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 427  bytes 89190 (87.0 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+virbr0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 192.168.122.1  netmask 255.255.255.0  broadcast 192.168.122.255
+        ether 52:54:00:19:66:4e  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@infra ~]# cd /etc/sysconfig/network-scripts/
+bond0                   ifdown-ib               ifup-ippp
+bond0.247               ifdown-ippp             ifup-ipv6
+bond0.248               ifdown-ipv6             ifup-isdn
+br-ex                   ifdown-isdn             ifup-plip
+br-fabric               ifdown-post             ifup-plusb
+br-mgmt                 ifdown-ppp              ifup-post
+.br-pxe.swp             ifdown-routes           ifup-ppp
+ifcfg-br-pxe            ifdown-sit              ifup-routes
+ifcfg-em1               ifdown-Team             ifup-sit
+ifcfg-em2               ifdown-TeamPort         ifup-Team
+ifcfg-em3               ifdown-tunnel           ifup-TeamPort
+ifcfg-em4               ifup                    ifup-tunnel
+ifcfg-lo                ifup-aliases            ifup-wireless
+ifdown                  ifup-bnep               init.ipv6-global
+ifdown-bnep             ifup-eth                network-functions
+ifdown-eth              ifup-ib                 network-functions-ipv6
+[root@infra ~]# cd /etc/sysconfig/network-scripts/
+[root@infra network-scripts]# ll
+total 272
+-rw-r--r--. 1 root root   186 Apr 12 13:46 bond0
+-rw-r--r--. 1 root root    78 Apr 12 13:35 bond0.247
+-rw-r--r--. 1 root root    76 Apr 12 13:34 bond0.248
+-rw-r--r--. 1 root root   201 Apr 12 13:35 br-ex
+-rw-r--r--. 1 root root   196 Apr 12 13:33 br-fabric
+-rw-r--r--. 1 root root   173 Apr 12 13:36 br-mgmt
+-rw-r--r--. 1 root root   168 Apr 12 13:38 ifcfg-br-pxe
+-rw-r--r--. 1 root root   208 Apr 12 13:23 ifcfg-em1
+-rw-r--r--. 1 root root   204 Apr 12 13:31 ifcfg-em2
+-rw-r--r--. 1 root root   163 Apr 12 13:31 ifcfg-em3
+-rw-r--r--. 1 root root   319 Apr 12 12:25 ifcfg-em4
+-rw-r--r--. 1 root root   254 Sep 16  2015 ifcfg-lo
+lrwxrwxrwx. 1 root root    24 Apr 12 10:21 ifdown -> ../../../usr/sbin/ifdown
+-rwxr-xr-x. 1 root root   627 Sep 16  2015 ifdown-bnep
+-rwxr-xr-x. 1 root root  5817 Sep 16  2015 ifdown-eth
+-rwxr-xr-x. 1 root root  6196 Nov 30 20:58 ifdown-ib
+-rwxr-xr-x. 1 root root   781 Sep 16  2015 ifdown-ippp
+-rwxr-xr-x. 1 root root  4201 Sep 16  2015 ifdown-ipv6
+lrwxrwxrwx. 1 root root    11 Apr 12 10:21 ifdown-isdn -> ifdown-ippp
+-rwxr-xr-x. 1 root root  1642 Sep 16  2015 ifdown-post
+-rwxr-xr-x. 1 root root  1068 Sep 16  2015 ifdown-ppp
+-rwxr-xr-x. 1 root root   837 Sep 16  2015 ifdown-routes
+-rwxr-xr-x. 1 root root  1444 Sep 16  2015 ifdown-sit
+-rwxr-xr-x. 1 root root  1599 Apr  2  2015 ifdown-Team
+-rwxr-xr-x. 1 root root  1556 Apr  2  2015 ifdown-TeamPort
+-rwxr-xr-x. 1 root root  1462 Sep 16  2015 ifdown-tunnel
+lrwxrwxrwx. 1 root root    22 Apr 12 10:21 ifup -> ../../../usr/sbin/ifup
+-rwxr-xr-x. 1 root root 12631 Sep 16  2015 ifup-aliases
+-rwxr-xr-x. 1 root root   859 Sep 16  2015 ifup-bnep
+-rwxr-xr-x. 1 root root 11721 Sep 16  2015 ifup-eth
+-rwxr-xr-x. 1 root root 10145 Nov 30 20:58 ifup-ib
+-rwxr-xr-x. 1 root root 12039 Sep 16  2015 ifup-ippp
+-rwxr-xr-x. 1 root root 10430 Sep 16  2015 ifup-ipv6
+lrwxrwxrwx. 1 root root     9 Apr 12 10:21 ifup-isdn -> ifup-ippp
+-rwxr-xr-x. 1 root root   642 Sep 16  2015 ifup-plip
+-rwxr-xr-x. 1 root root  1043 Sep 16  2015 ifup-plusb
+-rwxr-xr-x. 1 root root  2609 Sep 16  2015 ifup-post
+-rwxr-xr-x. 1 root root  4154 Sep 16  2015 ifup-ppp
+-rwxr-xr-x. 1 root root  1925 Sep 16  2015 ifup-routes
+-rwxr-xr-x. 1 root root  3263 Sep 16  2015 ifup-sit
+-rwxr-xr-x. 1 root root  1755 Apr  2  2015 ifup-Team
+-rwxr-xr-x. 1 root root  1876 Apr  2  2015 ifup-TeamPort
+-rwxr-xr-x. 1 root root  2682 Sep 16  2015 ifup-tunnel
+-rwxr-xr-x. 1 root root  1740 Sep 16  2015 ifup-wireless
+-rwxr-xr-x. 1 root root  4623 Sep 16  2015 init.ipv6-global
+-rw-r--r--. 1 root root 15322 Sep 16  2015 network-functions
+-rw-r--r--. 1 root root 26134 Sep 16  2015 network-functions-ipv6
+[root@infra network-scripts]# cat br-
+br-ex      br-fabric  br-mgmt    
+[root@infra network-scripts]# cat br-ex
+TYPE=Bridge
+DEVICE=br-ex
+NAME=br-ex
+ONBOOT=yes
+DEFROUTE=yes
+DELAY=0
+NM_CONTROLLED=no
+BOOTPROTO=none
+IPADDR=192.168.117.120
+NETMASK=255.255.255.0
+GATEWAY=192.168.117.1
+DNS1=8.8.8.8
+DNS2=114.114.114.114
+[root@infra network-scripts]# 
+[root@infra network-scripts]# 
+[root@infra network-scripts]# cat br-fabric 
+TYPE=Bridge
+DEVICE=br-fabric
+BOOTPROTO=none
+ONBOOT=yes
+USERCTL=no
+DELAY=0
+DEFROUTE=no
+NM_CONTROLLED=no
+IPADDR=192.168.117.110
+GATEWAY=192.168.117.119
+NETMASK=255.255.255.0
+NAME=br-fabric
+MTU=1580
+[root@infra network-scripts]# cat br-
+br-ex      br-fabric  br-mgmt    
+[root@infra network-scripts]# cat br-mgmt 
+TYPE=Bridge
+DEVICE=br-mgmt
+NAME=br-mgmt
+ONBOOT=yes
+DEFROUTE=yes
+DELAY=0
+NM_CONTROLLED=no
+BOOTPROTO=none
+IPADDR=192.168.117.130
+NETMASK=255.255.255.0
+GATEWAY=192.168.117.139
+[root@infra network-scripts]# ifconfig
+br-ex: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        ether ae:71:40:b1:d6:bf  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 925  bytes 41346 (40.3 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+br-fabric: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        ether a2:52:74:7a:8a:c1  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 98  bytes 6612 (6.4 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+br-mgmt: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        ether 56:35:83:1f:01:25  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 98  bytes 6612 (6.4 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+br-pxe: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.117.100  netmask 255.255.255.0  broadcast 192.168.117.255
+        inet6 fe80::1618:77ff:fe40:86fd  prefixlen 64  scopeid 0x20<link>
+        ether 14:18:77:40:86:fd  txqueuelen 0  (Ethernet)
+        RX packets 440  bytes 42208 (41.2 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 257  bytes 43349 (42.3 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+em1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::1618:77ff:fe40:86fd  prefixlen 64  scopeid 0x20<link>
+        ether 14:18:77:40:86:fd  txqueuelen 1000  (Ethernet)
+        RX packets 431  bytes 49184 (48.0 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 251  bytes 42559 (41.5 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 44  
+
+em4: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.117.250  netmask 255.255.255.0  broadcast 192.168.117.255
+        inet6 fe80::1618:77ff:fe40:8700  prefixlen 64  scopeid 0x20<link>
+        ether 14:18:77:40:87:00  txqueuelen 1000  (Ethernet)
+        RX packets 7949  bytes 904671 (883.4 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 3722  bytes 573550 (560.1 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 50  
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 0  (Local Loopback)
+        RX packets 427  bytes 89190 (87.0 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 427  bytes 89190 (87.0 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+virbr0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 192.168.122.1  netmask 255.255.255.0  broadcast 192.168.122.255
+        ether 52:54:00:19:66:4e  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@infra network-scripts]# 
+[root@infra network-scripts]# 
+[root@infra network-scripts]# 
+[root@infra network-scripts]# 
+[root@infra network-scripts]# service network restart
+Restarting network (via systemctl):                        [  OK  ]
+[root@infra network-scripts]# 
+[root@infra network-scripts]# 
+[root@infra network-scripts]# 
+[root@infra network-scripts]# ifconfig
+br-ex: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        ether ae:71:40:b1:d6:bf  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 925  bytes 41346 (40.3 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+br-fabric: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        ether a2:52:74:7a:8a:c1  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 98  bytes 6612 (6.4 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+br-mgmt: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        ether 56:35:83:1f:01:25  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 98  bytes 6612 (6.4 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+br-pxe: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.117.100  netmask 255.255.255.0  broadcast 192.168.117.255
+        inet6 fe80::1618:77ff:fe40:86fd  prefixlen 64  scopeid 0x20<link>
+        ether 14:18:77:40:86:fd  txqueuelen 0  (Ethernet)
+        RX packets 22  bytes 1778 (1.7 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 31  bytes 4338 (4.2 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+em1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::1618:77ff:fe40:86fd  prefixlen 64  scopeid 0x20<link>
+        ether 14:18:77:40:86:fd  txqueuelen 1000  (Ethernet)
+        RX packets 14  bytes 1398 (1.3 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 26  bytes 2896 (2.8 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 44  
+
+em4: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.117.250  netmask 255.255.255.0  broadcast 192.168.117.255
+        inet6 fe80::1618:77ff:fe40:8700  prefixlen 64  scopeid 0x20<link>
+        ether 14:18:77:40:87:00  txqueuelen 1000  (Ethernet)
+        RX packets 8007  bytes 910679 (889.3 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 3732  bytes 574350 (560.8 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 50  
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 0  (Local Loopback)
+        RX packets 427  bytes 89190 (87.0 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 427  bytes 89190 (87.0 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+virbr0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 192.168.122.1  netmask 255.255.255.0  broadcast 192.168.122.255
+        ether 52:54:00:19:66:4e  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@infra network-scripts]# 
+[root@infra network-scripts]# 
+[root@infra network-scripts]# 
+[root@infra network-scripts]# 
+[root@infra network-scripts]# ls
+bond0      ifcfg-br-pxe  ifdown       ifdown-isdn    ifdown-TeamPort  ifup-ib     ifup-post      ifup-tunnel
+bond0.247  ifcfg-em1     ifdown-bnep  ifdown-post    ifdown-tunnel    ifup-ippp   ifup-ppp       ifup-wireless
+bond0.248  ifcfg-em2     ifdown-eth   ifdown-ppp     ifup             ifup-ipv6   ifup-routes    init.ipv6-global
+br-ex      ifcfg-em3     ifdown-ib    ifdown-routes  ifup-aliases     ifup-isdn   ifup-sit       network-functions
+br-fabric  ifcfg-em4     ifdown-ippp  ifdown-sit     ifup-bnep        ifup-plip   ifup-Team      network-functions-ipv6
+br-mgmt    ifcfg-lo      ifdown-ipv6  ifdown-Team    ifup-eth         ifup-plusb  ifup-TeamPort
+[root@infra network-scripts]# mv br-fabric ifcfg-br-fabric
+[root@infra network-scripts]# service network restart
+Restarting network (via systemctl):  
+Connection closed by foreign host.
+
+Disconnected from remote host(192.168.117.100) at 17:10:59.
+
+Type `help' to learn how to use Xshell prompt.
+[c:\~]$ 
+[c:\~]$ 
+[c:\~]$ 
+
+Connecting to 192.168.117.100:22...
+Connection established.
+To escape to local shell, press 'Ctrl+Alt+]'.
+
+Last login: Tue Apr 12 14:02:26 2016 from 192.168.117.22
+[root@infra ~]# cd  /etc/sysconfig/network-scripts/
+[root@infra network-scripts]# l
+-bash: l: command not found
+[root@infra network-scripts]# ll
+total 272
+-rw-r--r--. 1 root root   186 Apr 12 13:46 bond0
+-rw-r--r--. 1 root root    78 Apr 12 13:35 bond0.247
+-rw-r--r--. 1 root root    76 Apr 12 13:34 bond0.248
+-rw-r--r--. 1 root root   201 Apr 12 13:35 br-ex
+-rw-r--r--. 1 root root   173 Apr 12 13:36 br-mgmt
+-rw-r--r--. 1 root root   192 Apr 12 14:12 ifcfg-br-fabric
+-rw-r--r--. 1 root root   168 Apr 12 13:38 ifcfg-br-pxe
+-rw-r--r--. 1 root root   208 Apr 12 13:23 ifcfg-em1
+-rw-r--r--. 1 root root   204 Apr 12 13:31 ifcfg-em2
+-rw-r--r--. 1 root root   163 Apr 12 13:31 ifcfg-em3
+-rw-r--r--. 1 root root   319 Apr 12 12:25 ifcfg-em4
+-rw-r--r--. 1 root root   254 Sep 16  2015 ifcfg-lo
+lrwxrwxrwx. 1 root root    24 Apr 12 10:21 ifdown -> ../../../usr/sbin/ifdown
+-rwxr-xr-x. 1 root root   627 Sep 16  2015 ifdown-bnep
+-rwxr-xr-x. 1 root root  5817 Sep 16  2015 ifdown-eth
+-rwxr-xr-x. 1 root root  6196 Nov 30 20:58 ifdown-ib
+-rwxr-xr-x. 1 root root   781 Sep 16  2015 ifdown-ippp
+-rwxr-xr-x. 1 root root  4201 Sep 16  2015 ifdown-ipv6
+lrwxrwxrwx. 1 root root    11 Apr 12 10:21 ifdown-isdn -> ifdown-ippp
+-rwxr-xr-x. 1 root root  1642 Sep 16  2015 ifdown-post
+-rwxr-xr-x. 1 root root  1068 Sep 16  2015 ifdown-ppp
+-rwxr-xr-x. 1 root root   837 Sep 16  2015 ifdown-routes
+-rwxr-xr-x. 1 root root  1444 Sep 16  2015 ifdown-sit
+-rwxr-xr-x. 1 root root  1599 Apr  2  2015 ifdown-Team
+-rwxr-xr-x. 1 root root  1556 Apr  2  2015 ifdown-TeamPort
+-rwxr-xr-x. 1 root root  1462 Sep 16  2015 ifdown-tunnel
+lrwxrwxrwx. 1 root root    22 Apr 12 10:21 ifup -> ../../../usr/sbin/ifup
+-rwxr-xr-x. 1 root root 12631 Sep 16  2015 ifup-aliases
+-rwxr-xr-x. 1 root root   859 Sep 16  2015 ifup-bnep
+-rwxr-xr-x. 1 root root 11721 Sep 16  2015 ifup-eth
+-rwxr-xr-x. 1 root root 10145 Nov 30 20:58 ifup-ib
+-rwxr-xr-x. 1 root root 12039 Sep 16  2015 ifup-ippp
+-rwxr-xr-x. 1 root root 10430 Sep 16  2015 ifup-ipv6
+lrwxrwxrwx. 1 root root     9 Apr 12 10:21 ifup-isdn -> ifup-ippp
+-rwxr-xr-x. 1 root root   642 Sep 16  2015 ifup-plip
+-rwxr-xr-x. 1 root root  1043 Sep 16  2015 ifup-plusb
+-rwxr-xr-x. 1 root root  2609 Sep 16  2015 ifup-post
+-rwxr-xr-x. 1 root root  4154 Sep 16  2015 ifup-ppp
+-rwxr-xr-x. 1 root root  1925 Sep 16  2015 ifup-routes
+-rwxr-xr-x. 1 root root  3263 Sep 16  2015 ifup-sit
+-rwxr-xr-x. 1 root root  1755 Apr  2  2015 ifup-Team
+-rwxr-xr-x. 1 root root  1876 Apr  2  2015 ifup-TeamPort
+-rwxr-xr-x. 1 root root  2682 Sep 16  2015 ifup-tunnel
+-rwxr-xr-x. 1 root root  1740 Sep 16  2015 ifup-wireless
+-rwxr-xr-x. 1 root root  4623 Sep 16  2015 init.ipv6-global
+-rw-r--r--. 1 root root 15322 Sep 16  2015 network-functions
+-rw-r--r--. 1 root root 26134 Sep 16  2015 network-functions-ipv6
+[root@infra network-scripts]# vi ifcfg-br-fabric 
+[root@infra network-scripts]# 
+[root@infra network-scripts]# 
+[root@infra network-scripts]# service network restart
+Restarting network (via systemctl):                        [  OK  ]
+[root@infra network-scripts]# 
+[root@infra network-scripts]# 
+[root@infra network-scripts]# ifconfig
+br-ex: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        ether ae:71:40:b1:d6:bf  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 925  bytes 41346 (40.3 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+br-fabric: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.17.10  netmask 255.255.255.0  broadcast 192.168.17.255
+        inet6 fe80::a052:74ff:fe7a:8ac1  prefixlen 64  scopeid 0x20<link>
+        ether a2:52:74:7a:8a:c1  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 266  bytes 14604 (14.2 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+br-mgmt: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        ether 56:35:83:1f:01:25  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 98  bytes 6612 (6.4 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+br-pxe: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.117.100  netmask 255.255.255.0  broadcast 192.168.117.255
+        inet6 fe80::1618:77ff:fe40:86fd  prefixlen 64  scopeid 0x20<link>
+        ether 14:18:77:40:86:fd  txqueuelen 0  (Ethernet)
+        RX packets 55  bytes 4370 (4.2 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 59  bytes 6710 (6.5 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+em1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::1618:77ff:fe40:86fd  prefixlen 64  scopeid 0x20<link>
+        ether 14:18:77:40:86:fd  txqueuelen 1000  (Ethernet)
+        RX packets 54  bytes 5204 (5.0 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 60  bytes 6240 (6.0 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 44  
+
+em4: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.117.250  netmask 255.255.255.0  broadcast 192.168.117.255
+        inet6 fe80::1618:77ff:fe40:8700  prefixlen 64  scopeid 0x20<link>
+        ether 14:18:77:40:87:00  txqueuelen 1000  (Ethernet)
+        RX packets 8288  bytes 944956 (922.8 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 3774  bytes 577574 (564.0 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 50  
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 0  (Local Loopback)
+        RX packets 472  bytes 101754 (99.3 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 472  bytes 101754 (99.3 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+virbr0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 192.168.122.1  netmask 255.255.255.0  broadcast 192.168.122.255
+        ether 52:54:00:19:66:4e  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@infra network-scripts]# 
+[root@infra network-scripts]# 
+[root@infra network-scripts]# 
+[root@infra network-scripts]# ping 192.168.17.10
+PING 192.168.17.10 (192.168.17.10) 56(84) bytes of data.
+64 bytes from 192.168.17.10: icmp_seq=1 ttl=64 time=0.047 ms
+64 bytes from 192.168.17.10: icmp_seq=2 ttl=64 time=0.031 ms
+^C
+--- 192.168.17.10 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 999ms
+rtt min/avg/max/mdev = 0.031/0.039/0.047/0.008 ms
+[root@infra network-scripts]# ping 192.168.17.1
+PING 192.168.17.1 (192.168.17.1) 56(84) bytes of data.
+^C
+--- 192.168.17.1 ping statistics ---
+2 packets transmitted, 0 received, 100% packet loss, time 999ms
+
+[root@infra network-scripts]# 
+[root@infra network-scripts]# 
+[root@infra network-scripts]# 
+[root@infra network-scripts]# 
+[root@infra network-scripts]# 
+[root@infra network-scripts]# ping -I em1 192.168.17.10
+ping: Warning: source address might be selected on device other than em1.
+PING 192.168.17.10 (192.168.17.10) from 192.168.117.250 em1: 56(84) bytes of data.
+From 192.168.117.250 icmp_seq=1 Destination Host Unreachable
+From 192.168.117.250 icmp_seq=2 Destination Host Unreachable
+From 192.168.117.250 icmp_seq=3 Destination Host Unreachable
+From 192.168.117.250 icmp_seq=4 Destination Host Unreachable
+^C
+--- 192.168.17.10 ping statistics ---
+4 packets transmitted, 0 received, +4 errors, 100% packet loss, time 2999ms
+pipe 4
+[root@infra network-scripts]# ping -I em2 192.168.17.10
+connect: Network is unreachable
+[root@infra network-scripts]# ping -I br-fabric 192.168.17.10
+PING 192.168.17.10 (192.168.17.10) from 192.168.17.10 br-fabric: 56(84) bytes of data.
+64 bytes from 192.168.17.10: icmp_seq=1 ttl=64 time=0.040 ms
+64 bytes from 192.168.17.10: icmp_seq=2 ttl=64 time=0.031 ms
+^C
+--- 192.168.17.10 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 999ms
+rtt min/avg/max/mdev = 0.031/0.035/0.040/0.007 ms
+[root@infra network-scripts]# 
+[root@infra network-scripts]# 
+[root@infra network-scripts]# 
+[root@infra network-scripts]# 
+[root@infra network-scripts]# ll
+total 272
+-rw-r--r--. 1 root root   186 Apr 12 13:46 bond0
+-rw-r--r--. 1 root root    78 Apr 12 13:35 bond0.247
+-rw-r--r--. 1 root root    76 Apr 12 13:34 bond0.248
+-rw-r--r--. 1 root root   201 Apr 12 13:35 br-ex
+-rw-r--r--. 1 root root   173 Apr 12 13:36 br-mgmt
+-rw-r--r--. 1 root root   191 Apr 12 14:19 ifcfg-br-fabric
+-rw-r--r--. 1 root root   168 Apr 12 13:38 ifcfg-br-pxe
+-rw-r--r--. 1 root root   208 Apr 12 13:23 ifcfg-em1
+-rw-r--r--. 1 root root   204 Apr 12 13:31 ifcfg-em2
+-rw-r--r--. 1 root root   163 Apr 12 13:31 ifcfg-em3
+-rw-r--r--. 1 root root   319 Apr 12 12:25 ifcfg-em4
+-rw-r--r--. 1 root root   254 Sep 16  2015 ifcfg-lo
+lrwxrwxrwx. 1 root root    24 Apr 12 10:21 ifdown -> ../../../usr/sbin/ifdown
+-rwxr-xr-x. 1 root root   627 Sep 16  2015 ifdown-bnep
+-rwxr-xr-x. 1 root root  5817 Sep 16  2015 ifdown-eth
+-rwxr-xr-x. 1 root root  6196 Nov 30 20:58 ifdown-ib
+-rwxr-xr-x. 1 root root   781 Sep 16  2015 ifdown-ippp
+-rwxr-xr-x. 1 root root  4201 Sep 16  2015 ifdown-ipv6
+lrwxrwxrwx. 1 root root    11 Apr 12 10:21 ifdown-isdn -> ifdown-ippp
+-rwxr-xr-x. 1 root root  1642 Sep 16  2015 ifdown-post
+-rwxr-xr-x. 1 root root  1068 Sep 16  2015 ifdown-ppp
+-rwxr-xr-x. 1 root root   837 Sep 16  2015 ifdown-routes
+-rwxr-xr-x. 1 root root  1444 Sep 16  2015 ifdown-sit
+-rwxr-xr-x. 1 root root  1599 Apr  2  2015 ifdown-Team
+-rwxr-xr-x. 1 root root  1556 Apr  2  2015 ifdown-TeamPort
+-rwxr-xr-x. 1 root root  1462 Sep 16  2015 ifdown-tunnel
+lrwxrwxrwx. 1 root root    22 Apr 12 10:21 ifup -> ../../../usr/sbin/ifup
+-rwxr-xr-x. 1 root root 12631 Sep 16  2015 ifup-aliases
+-rwxr-xr-x. 1 root root   859 Sep 16  2015 ifup-bnep
+-rwxr-xr-x. 1 root root 11721 Sep 16  2015 ifup-eth
+-rwxr-xr-x. 1 root root 10145 Nov 30 20:58 ifup-ib
+-rwxr-xr-x. 1 root root 12039 Sep 16  2015 ifup-ippp
+-rwxr-xr-x. 1 root root 10430 Sep 16  2015 ifup-ipv6
+lrwxrwxrwx. 1 root root     9 Apr 12 10:21 ifup-isdn -> ifup-ippp
+-rwxr-xr-x. 1 root root   642 Sep 16  2015 ifup-plip
+-rwxr-xr-x. 1 root root  1043 Sep 16  2015 ifup-plusb
+-rwxr-xr-x. 1 root root  2609 Sep 16  2015 ifup-post
+-rwxr-xr-x. 1 root root  4154 Sep 16  2015 ifup-ppp
+-rwxr-xr-x. 1 root root  1925 Sep 16  2015 ifup-routes
+-rwxr-xr-x. 1 root root  3263 Sep 16  2015 ifup-sit
+-rwxr-xr-x. 1 root root  1755 Apr  2  2015 ifup-Team
+-rwxr-xr-x. 1 root root  1876 Apr  2  2015 ifup-TeamPort
+-rwxr-xr-x. 1 root root  2682 Sep 16  2015 ifup-tunnel
+-rwxr-xr-x. 1 root root  1740 Sep 16  2015 ifup-wireless
+-rwxr-xr-x. 1 root root  4623 Sep 16  2015 init.ipv6-global
+-rw-r--r--. 1 root root 15322 Sep 16  2015 network-functions
+-rw-r--r--. 1 root root 26134 Sep 16  2015 network-functions-ipv6
+[root@infra network-scripts]# ls
+bond0            ifcfg-br-pxe  ifdown       ifdown-isdn    ifdown-TeamPort  ifup-ib     ifup-post      ifup-tunnel
+bond0.247        ifcfg-em1     ifdown-bnep  ifdown-post    ifdown-tunnel    ifup-ippp   ifup-ppp       ifup-wireless
+bond0.248        ifcfg-em2     ifdown-eth   ifdown-ppp     ifup             ifup-ipv6   ifup-routes    init.ipv6-global
+br-ex            ifcfg-em3     ifdown-ib    ifdown-routes  ifup-aliases     ifup-isdn   ifup-sit       network-functions
+br-mgmt          ifcfg-em4     ifdown-ippp  ifdown-sit     ifup-bnep        ifup-plip   ifup-Team      network-functions-ipv6
+ifcfg-br-fabric  ifcfg-lo      ifdown-ipv6  ifdown-Team    ifup-eth         ifup-plusb  ifup-TeamPort
+[root@infra network-scripts]# mv br-ex ifcfg-br-ex
+[root@infra network-scripts]# vi ifcfg-br-ex 
+[root@infra network-scripts]# service network restart
+Restarting network (via systemctl):  
+Connection closed by foreign host.
+
+Disconnected from remote host(192.168.117.100) at 17:24:04.
+
+Type `help' to learn how to use Xshell prompt.
+[c:\~]$ 
+
+Connecting to 192.168.117.250:22...
+Connection established.
+To escape to local shell, press 'Ctrl+Alt+]'.
+
+Last login: Tue Apr 12 14:16:23 2016 from 192.168.117.22
+[root@infra ~]# 
+[root@infra ~]# 
+[root@infra ~]# 
+[root@infra ~]# vi /etc/sysconfig/network
+[root@infra ~]# route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+ ^C
+[root@infra ~]# route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         192.168.248.1   0.0.0.0         UG    0      0        0 br-ex
+0.0.0.0         192.168.250.1   0.0.0.0         UG    0      0        0 br-mgmt
+169.254.0.0     0.0.0.0         255.255.0.0     U     1085   0        0 br-fabric
+169.254.0.0     0.0.0.0         255.255.0.0     U     1086   0        0 br-pxe
+169.254.0.0     0.0.0.0         255.255.0.0     U     1088   0        0 br-mgmt
+169.254.0.0     0.0.0.0         255.255.0.0     U     1090   0        0 br-ex
+192.168.17.0    0.0.0.0         255.255.255.0   U     0      0        0 br-fabric
+192.168.18.0    0.0.0.0         255.255.255.0   U     0      0        0 br-pxe
+192.168.117.0   0.0.0.0         255.255.255.0   U     100    0        0 em4
+192.168.122.0   0.0.0.0         255.255.255.0   U     0      0        0 virbr0
+192.168.248.0   0.0.0.0         255.255.255.0   U     0      0        0 br-ex
+192.168.250.0   0.0.0.0         255.255.255.0   U     0      0        0 br-mgmt
+[root@infra ~]# route del default gw 192.168.248.1
+[root@infra ~]# route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         192.168.250.1   0.0.0.0         UG    0      0        0 br-mgmt
+169.254.0.0     0.0.0.0         255.255.0.0     U     1085   0        0 br-fabric
+169.254.0.0     0.0.0.0         255.255.0.0     U     1086   0        0 br-pxe
+169.254.0.0     0.0.0.0         255.255.0.0     U     1088   0        0 br-mgmt
+169.254.0.0     0.0.0.0         255.255.0.0     U     1090   0        0 br-ex
+192.168.17.0    0.0.0.0         255.255.255.0   U     0      0        0 br-fabric
+192.168.18.0    0.0.0.0         255.255.255.0   U     0      0        0 br-pxe
+192.168.117.0   0.0.0.0         255.255.255.0   U     100    0        0 em4
+192.168.122.0   0.0.0.0         255.255.255.0   U     0      0        0 virbr0
+192.168.248.0   0.0.0.0         255.255.255.0   U     0      0        0 br-ex
+192.168.250.0   0.0.0.0         255.255.255.0   U     0      0        0 br-mgmt
+[root@infra ~]# service network restart
+Restarting network (via systemctl):                        [  OK  ]
+[root@infra ~]# 
+[root@infra ~]# 
+[root@infra ~]# route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         192.168.250.1   0.0.0.0         UG    0      0        0 br-mgmt
+169.254.0.0     0.0.0.0         255.255.0.0     U     1091   0        0 br-fabric
+169.254.0.0     0.0.0.0         255.255.0.0     U     1092   0        0 br-pxe
+169.254.0.0     0.0.0.0         255.255.0.0     U     1094   0        0 br-mgmt
+169.254.0.0     0.0.0.0         255.255.0.0     U     1096   0        0 br-ex
+192.168.17.0    0.0.0.0         255.255.255.0   U     0      0        0 br-fabric
+192.168.18.0    0.0.0.0         255.255.255.0   U     0      0        0 br-pxe
+192.168.117.0   0.0.0.0         255.255.255.0   U     100    0        0 em4
+192.168.122.0   0.0.0.0         255.255.255.0   U     0      0        0 virbr0
+192.168.248.0   0.0.0.0         255.255.255.0   U     0      0        0 br-ex
+192.168.250.0   0.0.0.0         255.255.255.0   U     0      0        0 br-mgmt
+[root@infra ~]# vi /etc/sysconfig/network-scripts/
+.br-pxe.swp             ifcfg-em3               ifdown-post             ifup-eth                ifup-sit
+ifcfg-bond0             ifcfg-em4               ifdown-ppp              ifup-ib                 ifup-Team
+ifcfg-bond0.247         ifcfg-lo                ifdown-routes           ifup-ippp               ifup-TeamPort
+ifcfg-bond0.248         ifdown                  ifdown-sit              ifup-ipv6               ifup-tunnel
+ifcfg-br-ex             ifdown-bnep             ifdown-Team             ifup-isdn               ifup-wireless
+ifcfg-br-fabric         ifdown-eth              ifdown-TeamPort         ifup-plip               init.ipv6-global
+ifcfg-br-mgmt           ifdown-ib               ifdown-tunnel           ifup-plusb              network-functions
+ifcfg-br-pxe            ifdown-ippp             ifup                    ifup-post               network-functions-ipv6
+ifcfg-em1               ifdown-ipv6             ifup-aliases            ifup-ppp                
+ifcfg-em2               ifdown-isdn             ifup-bnep               ifup-routes             
+[root@infra ~]# vi /etc/sysconfig/network-scripts/ifcfg-mgmt
+[root@infra ~]# vi /etc/sysconfig/network-scripts/ifcfg-
+ifcfg-bond0      ifcfg-bond0.248  ifcfg-br-fabric  ifcfg-br-pxe     ifcfg-em2        ifcfg-em4        
+ifcfg-bond0.247  ifcfg-br-ex      ifcfg-br-mgmt    ifcfg-em1        ifcfg-em3        ifcfg-lo         
+[root@infra ~]# vi /etc/sysconfig/network-scripts/ifcfg-
+ifcfg-bond0      ifcfg-bond0.248  ifcfg-br-fabric  ifcfg-br-pxe     ifcfg-em2        ifcfg-em4        
+ifcfg-bond0.247  ifcfg-br-ex      ifcfg-br-mgmt    ifcfg-em1        ifcfg-em3        ifcfg-lo         
+[root@infra ~]# vi /etc/sysconfig/network-scripts/ifcfg-br-mgmt 
+[root@infra ~]# 
+[root@infra ~]# service network restart
+Restarting network (via systemctl):                        [  OK  ]
+[root@infra ~]# route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         192.168.250.1   0.0.0.0         UG    0      0        0 br-mgmt
+169.254.0.0     0.0.0.0         255.255.0.0     U     1097   0        0 br-fabric
+169.254.0.0     0.0.0.0         255.255.0.0     U     1098   0        0 br-pxe
+169.254.0.0     0.0.0.0         255.255.0.0     U     1100   0        0 br-mgmt
+169.254.0.0     0.0.0.0         255.255.0.0     U     1102   0        0 br-ex
+192.168.17.0    0.0.0.0         255.255.255.0   U     0      0        0 br-fabric
+192.168.18.0    0.0.0.0         255.255.255.0   U     0      0        0 br-pxe
+192.168.117.0   0.0.0.0         255.255.255.0   U     100    0        0 em4
+192.168.122.0   0.0.0.0         255.255.255.0   U     0      0        0 virbr0
+192.168.248.0   0.0.0.0         255.255.255.0   U     0      0        0 br-ex
+192.168.250.0   0.0.0.0         255.255.255.0   U     0      0        0 br-mgmt
+[root@infra ~]# route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    0      0        0 br-mgmt
+link-local      0.0.0.0         255.255.0.0     U     1097   0        0 br-fabric
+link-local      0.0.0.0         255.255.0.0     U     1098   0        0 br-pxe
+link-local      0.0.0.0         255.255.0.0     U     1100   0        0 br-mgmt
+link-local      0.0.0.0         255.255.0.0     U     1102   0        0 br-ex
+192.168.17.0    0.0.0.0         255.255.255.0   U     0      0        0 br-fabric
+192.168.18.0    0.0.0.0         255.255.255.0   U     0      0        0 br-pxe
+192.168.117.0   0.0.0.0         255.255.255.0   U     100    0        0 em4
+192.168.122.0   0.0.0.0         255.255.255.0   U     0      0        0 virbr0
+192.168.248.0   0.0.0.0         255.255.255.0   U     0      0        0 br-ex
+192.168.250.0   0.0.0.0         255.255.255.0   U     0      0        0 br-mgmt
+[root@infra ~]# vi /etc/sysconfig/network-scripts/ifcfg-br-mgmt 
+[root@infra ~]# route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         192.168.250.1   0.0.0.0         UG    0      0        0 br-mgmt
+169.254.0.0     0.0.0.0         255.255.0.0     U     1097   0        0 br-fabric
+169.254.0.0     0.0.0.0         255.255.0.0     U     1098   0        0 br-pxe
+169.254.0.0     0.0.0.0         255.255.0.0     U     1100   0        0 br-mgmt
+169.254.0.0     0.0.0.0         255.255.0.0     U     1102   0        0 br-ex
+192.168.17.0    0.0.0.0         255.255.255.0   U     0      0        0 br-fabric
+192.168.18.0    0.0.0.0         255.255.255.0   U     0      0        0 br-pxe
+192.168.117.0   0.0.0.0         255.255.255.0   U     100    0        0 em4
+192.168.122.0   0.0.0.0         255.255.255.0   U     0      0        0 virbr0
+192.168.248.0   0.0.0.0         255.255.255.0   U     0      0        0 br-ex
+192.168.250.0   0.0.0.0         255.255.255.0   U     0      0        0 br-mgmt
+[root@infra ~]# route --help
+Usage: route [-nNvee] [-FC] [<AF>]           List kernel routing tables
+       route [-v] [-FC] {add|del|flush} ...  Modify routing table for AF.
+
+       route {-h|--help} [<AF>]              Detailed usage syntax for specified AF.
+       route {-V|--version}                  Display version/author and exit.
+
+        -v, --verbose            be verbose
+        -n, --numeric            don't resolve names
+        -e, --extend             display other/more information
+        -F, --fib                display Forwarding Information Base (default)
+        -C, --cache              display routing cache instead of FIB
+
+  <AF>=Use -4, -6, '-A <af>' or '--<af>'; default: inet
+  List of possible address families (which support routing):
+    inet (DARPA Internet) inet6 (IPv6) ax25 (AMPR AX.25) 
+    netrom (AMPR NET/ROM) ipx (Novell IPX) ddp (Appletalk DDP) 
+    x25 (CCITT X.25) 
+[root@infra ~]# vi /etc/sysconfig/network
+[root@infra ~]# ip route 
+default via 192.168.250.1 dev br-mgmt 
+169.254.0.0/16 dev br-fabric  scope link  metric 1097 
+169.254.0.0/16 dev br-pxe  scope link  metric 1098 
+169.254.0.0/16 dev br-mgmt  scope link  metric 1100 
+169.254.0.0/16 dev br-ex  scope link  metric 1102 
+192.168.17.0/24 dev br-fabric  proto kernel  scope link  src 192.168.17.10 
+192.168.18.0/24 dev br-pxe  proto kernel  scope link  src 192.168.18.100 
+192.168.117.0/24 dev em4  proto kernel  scope link  src 192.168.117.250  metric 100 
+192.168.122.0/24 dev virbr0  proto kernel  scope link  src 192.168.122.1 
+192.168.248.0/24 dev br-ex  proto kernel  scope link  src 192.168.248.10 
+192.168.250.0/24 dev br-mgmt  proto kernel  scope link  src 192.168.250.130 
+[root@infra ~]# vi /etc/sysconfig/network-scripts/ifcfg-br-mgmt 
+[root@infra ~]# 
+[root@infra ~]# 
+[root@infra ~]# service network restart
+Restarting network (via systemctl):                        [  OK  ]
+[root@infra ~]# 
+[root@infra ~]# 
+[root@infra ~]# route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         192.168.248.1   0.0.0.0         UG    0      0        0 br-ex
+169.254.0.0     0.0.0.0         255.255.0.0     U     1103   0        0 br-fabric
+169.254.0.0     0.0.0.0         255.255.0.0     U     1104   0        0 br-pxe
+169.254.0.0     0.0.0.0         255.255.0.0     U     1106   0        0 br-mgmt
+169.254.0.0     0.0.0.0         255.255.0.0     U     1108   0        0 br-ex
+192.168.17.0    0.0.0.0         255.255.255.0   U     0      0        0 br-fabric
+192.168.18.0    0.0.0.0         255.255.255.0   U     0      0        0 br-pxe
+192.168.117.0   0.0.0.0         255.255.255.0   U     100    0        0 em4
+192.168.122.0   0.0.0.0         255.255.255.0   U     0      0        0 virbr0
+192.168.248.0   0.0.0.0         255.255.255.0   U     0      0        0 br-ex
+192.168.250.0   0.0.0.0         255.255.255.0   U     0      0        0 br-mgmt
+[root@infra ~]# 
+Connection closed by foreign host.
+
+Disconnected from remote host(192.168.117.250) at 20:01:25.
+
+Type `help' to learn how to use Xshell prompt.
+
+[END] 2016/4/12 22:46:35

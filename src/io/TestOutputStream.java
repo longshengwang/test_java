@@ -40,7 +40,7 @@ public class TestOutputStream {
 		PrintStream pt = new PrintStream(fileOutputStream);
 		fileOutputStream.flush();
 		pt.print("s°¢ÈøµÂ¸Ádfshd");
-		pt.
+//		pt.
 		pt.flush();
 		fileOutputStream.close();
 	}
